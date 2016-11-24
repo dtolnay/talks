@@ -1,0 +1,2566 @@
+\documentclass[usepdftitle=false]{beamer}
+\mode<presentation>{\usetheme{m}}
+
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{fancyvrb}
+\usepackage{mathtools}
+\usepackage{scalefnt}
+\usepackage{xspace}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{minted}
+\usemintedstyle{dtolnay}
+\setminted{autogobble,xleftmargin=-.5em,escapeinside=~~}
+
+\usepackage{scrextend}
+\changefontsizes{14pt}
+
+\newcommand{\plus}{\hspace{3pt}\raisebox{-.21em}{\scalefont{1.5}\Light+}\hspace{3pt}\xspace}
+\title{Macros {\scalefont{0.85}1\hspace{1.5pt}.\hspace{0pt}1} \plus Syn \plus Quote}
+\author{@dtolnay \ <David Tolnay>}
+\date{}
+
+\hypersetup{
+  pdftitle={Macros 1.1 + Syn + Quote},
+  pdfauthor={David Tolnay},
+  pdfsubject={Rust},
+}
+
+\definecolor{magentish}{HTML}{B00040}
+\definecolor{yellowbg}{HTML}{FFF200}
+
+% fira mono has a distracting ampersand glyph
+\let\ampersand=\&
+\renewcommand{\&}{\makebox[\widthof{\ampersand}][c]{\scalebox{0.9}[1.0]{\Book\ampersand}}}
+
+% fira mono has a tiny plus sign
+\newcommand{\+}{\makebox[\widthof{+}][c]{\raisebox{-.2\height}{\scalefont{1.5}\Light+}}}
+
+\usepackage[outline]{contour}
+\newcommand{\thick}[1]{\contourlength{0.12pt}\contour[10]{black}{#1}}
+\newcommand{\thicker}[1]{\contourlength{0.26pt}\contour[10]{black}{#1}}
+
+\tikzset{highlighting/.style={
+  append after command={
+    \pgfextra{
+      \path[fill=yellowbg,rounded corners,overlay]
+        ($(\tikzlastnode.south west)+(-0.06,-0.15)$)
+        rectangle
+        ($(\tikzlastnode.south east)+(0.06,0.52+#1*0.6775)$)
+        ;
+      }
+    }
+  }
+}
+\newcommand{\hi}[1]{%
+\tikz[baseline=(A.base)]
+ \node[highlighting=0,inner sep=0pt,text depth=0pt] (A) {#1};%
+}
+\newcommand{\hiq}[1]{\hi{''#1''}}
+\newcommand{\quot}[1]{''#1''}
+\newcommand{\omitted}{/* ... */}
+\newcommand{\extrahi}[2]{%
+\tikz[baseline=(A.base)]
+  \node[highlighting=#1,inner sep=0pt,text depth=0pt] (A) {#2};%
+}
+
+\begin{document}
+
+\begin{frame}[noframenumbering,label=title]
+  \maketitle
+  \thispagestyle{empty}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    $\mathclap{\texttt{github.com/dtolnay/talks}}$
+  \end{center}
+\end{frame}
+
+\plain{Servo}
+
+\begin{frame}[fragile]
+  \begin{Verbatim}[commandchars=\\\{\},xleftmargin=-2em]
+    \color{magentish}\textbf{$ ./mach run --memory-profile}
+  \end{Verbatim}
+  \vspace{-2em}
+  \begin{Verbatim}[commandchars=\\\{\},xleftmargin=-2em]
+      \textbf{2.66 MiB} -- url(https://servo.org/)
+         \textbf{0.42 MiB} -- layout-thread
+            \textbf{0.37 MiB} -- stylist
+            \textbf{0.04 MiB} -- display-list
+            \textbf{0.00 MiB} -- local-context
+         \textbf{0.09 MiB} -- dom-tree
+  \end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_children(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_childre(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_childr(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_child(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_chil(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_chi(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_ch(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_c(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of_(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeOf {
+        fn heap_size_of(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSizeO {
+        fn heap_size_o(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSize {
+        fn heap_size_(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub trait HeapSize {
+        fn heap_size(~\&~self) -> usize;
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl HeapSize for u8 {
+        fn heap_size(~\&~self) -> usize {
+          0
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl HeapSize for ~\hi{u8}~ {
+        fn heap_size(~\&~self) -> usize {
+          0
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl HeapSize for u8 {
+        fn heap_size(~\&~self) -> usize {
+          ~\hi{0}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl HeapSize for u8 {
+        fn heap_size(~\&~self) -> usize {
+          0
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          mem::size_of<T>()
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for ~\hi{Box<T>}~
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          mem::size_of<T>()
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          ~\hi{mem::size\_of<T>()}~
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where ~\hi{T: HeapSize}~
+      {
+        fn heap_size(~\&~self) -> usize {
+          mem::size_of<T>()
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          mem::size_of<T>()
+           ~\+~ ~\hi{(**self).heap\_size()}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          mem::size_of<T>()
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          ~\hi{size\_of\_alloc(\&**self \thicker{as} *const T)}~
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: ~\hi{?Sized}~ ~\+~ HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          size_of_alloc(~\&~**self as *const T)
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: ?Sized ~\+~ HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          size_of_alloc(~\&~**self as *const T)
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .map(HeapSize::heap_size)
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for ~\hi{[T]}~
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .map(HeapSize::heap_size)
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where ~\hi{T: HeapSize}~
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .map(HeapSize::heap_size)
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.~\hi{iter()}~
+              .map(HeapSize::heap_size)
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .~\hi{map(HeapSize::heap\_size)}~
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .map(HeapSize::heap_size)
+              .~\hi{sum()}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for [T]
+        where T: HeapSize
+      {
+        fn heap_size(~\&~self) -> usize {
+          self.iter()
+              .map(HeapSize::heap_size)
+              .sum()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  % https://doc.servo.org/style/values/computed/image/struct.Gradient.html
+  \begin{minted}{rusty}
+    pub struct Gradient {
+      pub stops: Vec<ColorStop>,
+      pub repeating: bool,
+      pub gradient_kind: GradientKind,
+    }
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+
+      ~\hi{\thicker{impl} HeapSize \thicker{for} Gradient}~ {
+        fn heap_size(~\&~self) -> usize {
+          self.stops.heap_size()
+           ~\+~ self.repeating.heap_size()
+           ~\+~ self.gradient_kind.heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+
+      impl HeapSize for Gradient {
+        fn heap_size(~\&~self) -> usize {
+          self.stops.heap_size()
+           ~\+~ self.repeating.heap_size()
+           ~\+~ self.gradient_kind.heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub ~\hi{stops: Vec<ColorStop>}~,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+
+      impl HeapSize for Gradient {
+        fn heap_size(~\&~self) -> usize {
+          ~\hi{self.stops.heap\_size()}~
+           ~\+~ self.repeating.heap_size()
+           ~\+~ self.gradient_kind.heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub ~\hi{repeating: bool}~,
+        pub gradient_kind: GradientKind,
+      }
+
+      impl HeapSize for Gradient {
+        fn heap_size(~\&~self) -> usize {
+          self.stops.heap_size()
+           ~\+~ ~\hi{self.repeating.heap\_size()}~
+           ~\+~ self.gradient_kind.heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub ~\hi{gradient\_kind: GradientKind}~,
+      }
+
+      impl HeapSize for Gradient {
+        fn heap_size(~\&~self) -> usize {
+          self.stops.heap_size()
+           ~\+~ self.repeating.heap_size()
+           ~\+~ ~\hi{self.gradient\_kind.heap\_size()}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+
+      impl HeapSize for Gradient {
+        fn heap_size(~\&~self) -> usize {
+          self.stops.heap_size()
+           ~\+~ self.repeating.heap_size()
+           ~\+~ self.gradient_kind.heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minipage}[t][0.4\textheight][b]{\textwidth}
+    \begin{onlyenv}<1-2>
+      \begin{minted}{rusty}
+        println!("Hello, {}", person)
+        ~~
+      \end{minted}
+    \end{onlyenv}
+    \begin{onlyenv}<3>
+      \begin{minted}{rusty}
+        println!(~\hi{\quot{Hello, \{\}}, person}~)
+        ~~
+      \end{minted}
+    \end{onlyenv}
+    \begin{onlyenv}<4-6>
+      \begin{minted}[fontsize=\tiny]{rusty}
+        ::std::io::_print(::std::fmt::Arguments::new_v1(
+          {
+            static __STATIC_FMTSTR: ~\&~'static [~\&~'static str] = ~\&~["Hello, ", "\n"];
+            __STATIC_FMTSTR
+          },
+          ~\&~match (~\&~person,) {
+            (__arg0,) => [
+              ::std::fmt::ArgumentV1::new(__arg0, ::std::fmt::Display::fmt),
+            ],
+          }
+        ));
+        ~~
+      \end{minted}
+    \end{onlyenv}
+  \end{minipage}
+  \begin{minipage}[t][0.4\textheight][t]{\textwidth}
+    \begin{onlyenv}<2-4>
+      \begin{minted}{rusty}
+        assert!(x.len() > 0);
+      \end{minted}
+    \end{onlyenv}
+    \begin{onlyenv}<5>
+      \vspace{-2ex}
+      \begin{minted}{rusty}
+        assert!(~\hi{x.len() > 0}~);
+      \end{minted}
+    \end{onlyenv}
+    \begin{onlyenv}<6>
+      \vspace{-1.5ex}
+      \begin{minted}[fontsize=\tiny]{rusty}
+        if !(x.len() > 0) {
+          ::std::rt::begin_panic(
+            "assertion failed: x.len() > 0",
+            {
+              static _FILE_LINE: (~\&~'static str, u32) = ("src/main.rs", 3u32);
+              ~\&~_FILE_LINE
+            }
+          )
+        }
+      \end{minted}
+    \end{onlyenv}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #[~\hi{derive(Clone, PartialEq)}~]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #[derive(~\hi{Clone}~, PartialEq)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #[derive(Clone, PartialEq, ~\hi{HeapSize}~)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #[derive(Clone, PartialEq, HeapSize)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\plain{\normalfont \tt \#![feature(proc\_macro)]}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      ~\hi{\thicker{pub} \thicker{fn} heap\_size}~(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(~\hi{input: TokenStream}~)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       ~\hi{-> TokenStream}~
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[~\hi{proc\_macro\_derive(HeapSize)}~]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![~\hi{feature(proc\_macro)}~]
+      ~~
+      ~~
+      ~~
+      ~~
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro, ~\hi{proc\_macro\_lib}~)]
+
+      ~\hi{\thicker{extern crate} proc\_macro}~;
+
+
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro, proc_macro_lib)]
+
+      extern crate proc_macro;
+      ~\hi{\thicker{use} proc\_macro::TokenStream}~;
+
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro, proc_macro_lib)]
+
+      extern crate proc_macro;
+      use proc_macro::TokenStream;
+
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        /* ... */
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro, proc_macro_lib)]
+
+      extern crate proc_macro;
+      use proc_macro::TokenStream;
+
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream
+      {
+        ~\hi{\omitted}~
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = impl_heap_size(~\&~ast);
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = ~\hi{input.to\_string()}~;
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = impl_heap_size(~\&~ast);
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        ~\hi{syn::parse\_macro\_input(\&s)}~.unwrap();
+
+      // Build the impl
+      let gen = impl_heap_size(~\&~ast);
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = ~\hi{impl\_heap\_size(\&ast)}~;
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = impl_heap_size(~\&~ast);
+
+      // Return the generated impl
+      ~\hi{gen.parse().unwrap()}~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = impl_heap_size(~\&~ast);
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      let s = input.to_string();
+
+      // Parse the string representation
+      let ast =
+        syn::parse_macro_input(~\&~s).unwrap();
+
+      // Build the impl
+      let gen = ~\hi{impl\_heap\_size}~(~\&~ast);
+
+      // Return the generated impl
+      gen.parse().unwrap()
+      ~~
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{fn} impl\_heap\_size}~(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(~\hi{ast: \&syn::MacroInput}~)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> ~\hi{quote::Tokens}~
+      {
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        ~\hi{quote! \{}~
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        ~\extrahi{5.1}{\}}~
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let ~\hi{name}~ = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for ~\hi{#name}~ {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let ~\hi{sum}~ = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              ~\hi{#sum}~
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn impl_heap_size(ast: ~\&~syn::MacroInput)
+                        -> quote::Tokens
+      {
+        let name = ~\&~ast.ident;
+        let sum = ~\hi{heap\_size\_sum}~(~\&~ast.body);
+        quote! {
+          impl HeapSize for #name {
+            fn heap_size(~\&~self) -> usize {
+              #sum
+            }
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{fn} heap\_size\_sum}~(body: ~\&~syn::Body)
+                       -> quote::Tokens
+      {
+        match *body {
+          syn::Body::Struct(ref fields) => {
+            struct_sum(fields)
+          }
+          syn::Body::Enum(_) => {
+            unimplemented!()
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn heap_size_sum(~\hi{body: \&syn::Body}~)
+                       -> quote::Tokens
+      {
+        match *body {
+          syn::Body::Struct(ref fields) => {
+            struct_sum(fields)
+          }
+          syn::Body::Enum(_) => {
+            unimplemented!()
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn heap_size_sum(body: ~\&~syn::Body)
+                       -> ~\hi{quote::Tokens}~
+      {
+        match *body {
+          syn::Body::Struct(ref fields) => {
+            struct_sum(fields)
+          }
+          syn::Body::Enum(_) => {
+            unimplemented!()
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn heap_size_sum(body: ~\&~syn::Body)
+                       -> quote::Tokens
+      {
+        match *body {
+          ~\hi{syn::Body::Struct}~(ref fields) => {
+            struct_sum(fields)
+          }
+          ~\hi{syn::Body::Enum}~(_) => {
+            unimplemented!()
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn heap_size_sum(body: ~\&~syn::Body)
+                       -> quote::Tokens
+      {
+        match *body {
+          syn::Body::Struct(ref fields) => {
+            ~\hi{struct\_sum}~(fields)
+          }
+          syn::Body::Enum(_) => {
+            unimplemented!()
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{fn} struct\_sum}~(fields: ~\&~syn::VariantData)
+                    -> quote::Tokens
+      {
+        match *fields {
+          syn::VariantData::Struct(ref s) => {
+            braced_struct_sum(s)
+          }
+          syn::VariantData::Tuple(ref t) => {
+            tuple_struct_sum(t)
+          }
+          syn::VariantData::Unit => quote!(0)
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn struct_sum(~\hi{fields: \&syn::VariantData}~)
+                    -> quote::Tokens
+      {
+        match *fields {
+          syn::VariantData::Struct(ref s) => {
+            braced_struct_sum(s)
+          }
+          syn::VariantData::Tuple(ref t) => {
+            tuple_struct_sum(t)
+          }
+          syn::VariantData::Unit => quote!(0)
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn struct_sum(fields: ~\&~syn::VariantData)
+                    -> ~\hi{quote::Tokens}~
+      {
+        match *fields {
+          syn::VariantData::Struct(ref s) => {
+            braced_struct_sum(s)
+          }
+          syn::VariantData::Tuple(ref t) => {
+            tuple_struct_sum(t)
+          }
+          syn::VariantData::Unit => quote!(0)
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn struct_sum(fields: ~\&~syn::VariantData)
+                    -> quote::Tokens
+      {
+        match *fields {
+          ~\hi{syn::VariantData::Struct}~(ref s) => {
+            braced_struct_sum(s)
+          }
+          ~\hi{syn::VariantData::Tuple}~(ref t) => {
+            tuple_struct_sum(t)
+          }
+          ~\hi{syn::VariantData::Unit}~ => quote!(0)
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn struct_sum(fields: ~\&~syn::VariantData)
+                    -> quote::Tokens
+      {
+        match *fields {
+          syn::VariantData::Struct(ref s) => {
+            braced_struct_sum(s)
+          }
+          syn::VariantData::Tuple(ref t) => {
+            tuple_struct_sum(t)
+          }
+          syn::VariantData::Unit => ~\hi{quote!(0)}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn struct_sum(fields: ~\&~syn::VariantData)
+                    -> quote::Tokens
+      {
+        match *fields {
+          syn::VariantData::Struct(ref s) => {
+            ~\hi{braced\_struct\_sum}~(s)
+          }
+          syn::VariantData::Tuple(ref t) => {
+            tuple_struct_sum(t)
+          }
+          syn::VariantData::Unit => quote!(0)
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{fn} braced\_struct\_sum}~(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(~\hi{fs: \&[syn::Field]}~)
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> ~\hi{quote::Tokens}~
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\hi{\thick{#(}}~
+            ~\+~ self.#fnames.heap_size()
+          ~\hi{\thick{)*}}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let ~\hi{fnames}~ = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.~\hi{#fnames}~.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          ~\hi{0}~ ~\thick{#(}~
+            ~\+~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\hi{\+}~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ ~\hi{self.#fnames.heap\_size()}~
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn braced_struct_sum(fs: ~\&~[syn::Field])
+                           -> quote::Tokens
+      {
+        let fnames = fs.iter()
+                       .map(|f| ~\&~f.ident);
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#fnames.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{fn} tuple\_struct\_sum}~(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(~\hi{fs: \&[syn::Field]}~)
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> ~\hi{quote::Tokens}~
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let ~\hi{indices}~ = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.~\hi{#indices}~.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          ~\hi{0}~ ~\thick{#(}~
+            ~\+~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\hi{\+}~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ ~\hi{self.#indices.heap\_size()}~
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      fn tuple_struct_sum(fs: ~\&~[syn::Field])
+                          -> quote::Tokens
+      {
+        let indices = 0..fs.len();
+
+        quote! {
+          0 ~\thick{#(}~
+            ~\+~ self.#indices.heap_size()
+          ~\thick{)*}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile,shrink=10]
+  \hspace{-1.25em}
+  \begin{minipage}[t]{0.50\textwidth}
+    \begin{minted}[fontsize=\tiny]{rusty}
+      #![feature(proc_macro, proc_macro_lib)]
+
+      extern crate proc_macro;
+      extern crate syn;
+      #[macro_use] extern crate quote;
+
+      use proc_macro::TokenStream;
+      use syn::{Body, VariantData};
+
+      #[proc_macro_derive(HeapSize)]
+      pub fn heap_size(input: TokenStream)
+                       -> TokenStream {
+        let s = input.to_string();
+        let ast = syn::parse_macro_input(~\&~s)
+                      .unwrap();
+
+        let name = ~\&~ast.ident;
+        let sum = heap_size_sum(~\&~ast.body);
+        let gen = quote! {
+          impl HeapSize for #name {
+            fn num_fields() -> usize {
+              #sum
+            }
+          }
+        };
+
+        gen.parse().unwrap()
+      }
+    \end{minted}
+  \end{minipage}
+  \begin{minipage}[t]{0.45\textwidth}
+    \begin{minted}[fontsize=\tiny]{rusty}
+      fn heap_size_sum(body: ~\&~Body) -> quote::Tokens {
+        match *body {
+          Body::Struct(VariantData::Struct(ref fs)) => {
+            let fnames = fs.iter().map(|f| ~\&~f.ident);
+            quote! {
+              0 ~#~(
+                ~\+~ self.#fnames.heap_size()
+              )*
+            }
+          }
+          Body::Struct(VariantData::Tuple(ref fs)) => {
+            let indices = 0..fs.len();
+            quote! {
+              0 ~#~(
+                ~\+~ self.#indices.heap_size()
+              )*
+            }
+          }
+          Body::Struct(VariantData::Unit) => quote!(0),
+          Body::Enum(_) => unimplemented!(),
+        }
+      }
+    \end{minted}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro)]
+
+      #[macro_use]
+      extern crate heapsize_derive;
+
+      #[derive(HeapSize)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![~\hi{feature(proc\_macro)}~]
+
+      #[macro_use]
+      extern crate heapsize_derive;
+
+      #[derive(HeapSize)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro)]
+
+      #[macro_use]
+      ~\hi{\thicker{extern crate} heapsize\_derive}~;
+
+      #[derive(HeapSize)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro)]
+
+      #[macro_use]
+      extern crate heapsize_derive;
+
+      #[~\hi{derive(HeapSize)}~]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      #![feature(proc_macro)]
+
+      #[macro_use]
+      extern crate heapsize_derive;
+
+      #[derive(HeapSize)]
+      pub struct Gradient {
+        pub stops: Vec<ColorStop>,
+        pub repeating: bool,
+        pub gradient_kind: GradientKind,
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\plain{Syn Internals}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      /// e.g. 'std::collections::HashMap'
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct Path {
+        pub global: bool,
+        pub segments: Vec<PathSegment>,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      /// e.g. 'std::collections::HashMap'
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct ~\hi{Path}~ {
+        pub global: bool,
+        pub segments: Vec<PathSegment>,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      /// e.g. 'std::collections::HashMap'
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct Path {
+        pub ~\hi{global}~: bool,
+        pub segments: Vec<PathSegment>,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      /// e.g. 'std::collections::HashMap'
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct Path {
+        pub global: bool,
+        pub ~\hi{segments}~: Vec<PathSegment>,
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      /// e.g. 'std::collections::HashMap'
+      #[derive(Debug, Clone, Eq, PartialEq)]
+      pub struct Path {
+        pub global: bool,
+        pub segments: Vec<PathSegment>,
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: separated_nonempty_list!(
+          punct!("::"), path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub ~\hi{path -> Path}~, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: separated_nonempty_list!(
+          punct!("::"), path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: ~\hi{option!(punct!(\quot{::}))}~ ~>>~
+        segments: separated_nonempty_list!(
+          punct!("::"), path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: ~\hi{separated\_nonempty\_list!}~(
+          punct!("::"), path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: separated_nonempty_list!(
+          punct!("::"), ~\hi{path\_segment}~) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: separated_nonempty_list!(
+          ~\hi{punct!(\quot{::})}~, path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      named!(pub path -> Path, do_parse!(
+        global: option!(punct!("::")) ~>>~
+        segments: separated_nonempty_list!(
+          punct!("::"), path_segment) ~>>~
+        (Path {
+          global: global.is_some(),
+          segments: segments,
+        })
+      ));
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl ToTokens for Path {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in self.segments
+                              .iter()
+                              .enumerate() {
+            if i > 0 || self.global {
+              t.append("::");
+            }
+            seg.to_tokens(t);
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\hi{\thicker{impl} ToTokens \thicker{for} Path}~ {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in self.segments
+                              .iter()
+                              .enumerate() {
+            if i > 0 || self.global {
+              t.append("::");
+            }
+            seg.to_tokens(t);
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl ToTokens for Path {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in ~\hi{self.segments}~
+                              ~\hi{.iter()}~
+                              .enumerate() {
+            if i > 0 || self.global {
+              t.append("::");
+            }
+            seg.to_tokens(t);
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl ToTokens for Path {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in self.segments
+                              .iter()
+                              .enumerate() {
+            if i > 0 || self.global {
+              ~\hi{t.append(\quot{::});}~
+            }
+            seg.to_tokens(t);
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl ToTokens for Path {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in self.segments
+                              .iter()
+                              .enumerate() {
+            if i > 0 || self.global {
+              t.append("::");
+            }
+            ~\hi{seg.to\_tokens(t);}~
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl ToTokens for Path {
+        fn to_tokens(~\&~self, t: ~\&~mut Tokens) {
+          for (i, seg) in self.segments
+                              .iter()
+                              .enumerate() {
+            if i > 0 || self.global {
+              t.append("::");
+            }
+            seg.to_tokens(t);
+          }
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\plain{Quote Internals}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x); }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x); }
+
+      {
+        let mut s = ~\hi{quote::Tokens::new()}~;
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\hi{\thicker{return}}~ f(x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append(~\hiq{return}~);
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return ~\hi{f}~(x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append(~\hiq{f}~);
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f~\hi{(}~x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append(~\hiq{(}~);
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(~\hi{x}~); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append(~\hiq{x}~);
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x~\hi{)}~; }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(~\hiq{)}~);
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x)~\hi{;}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(~\hiq{;}~);
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        s.append("x");
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(~\hi{#x}~); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        ~\hi{x.to\_tokens(\&\thicker{mut} s);}~
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { return f(#x); }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("return");
+        s.append("f");
+        s.append("(");
+        x.to_tokens(~\&~mut s);
+        s.append(")");
+        s.append(";");
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = ~\hi{0}~ ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\hi{\thick{#(} \+ #x \thick{)*}}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append("0");
+        for x in x {
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\hi{sum}~ = 0 ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append(~\hiq{sum}~);
+        s.append("=");
+        s.append("0");
+        for x in x {
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum ~\hi{=}~ 0 ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append(~\hiq{=}~);
+        s.append("0");
+        for x in x {
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = ~\hi{0}~ ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append(~\hiq{0}~);
+        for x in x {
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\hi{\thick{#(} \+ #x \thick{)*}}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append("0");
+        ~\hi{\thicker{for} x \thicker{in} x \{}~
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\thick{#(}~ ~\hi{\+}~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append("0");
+        for x in x {
+          s.append(~\hiq{+}~);
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\thick{#(}~ ~\+~ ~\hi{#x}~ ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append("0");
+        for x in x {
+          s.append("+");
+          ~\hi{x.to\_tokens(\&\thicker{mut} s);}~
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { sum = 0 ~\thick{#(}~ ~\+~ #x ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        s.append("sum");
+        s.append("=");
+        s.append("0");
+        for x in x {
+          s.append("+");
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x ~\thick{),*}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\hi{\thick{#(} #x \thick{),*}}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x ~\thick{),*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (i, x) in x.into_iter()
+                       .enumerate() {
+          if i > 0 {
+            s.append(",");
+          }
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\hi{\thick{#(} #x \thick{)}}\thick{,}\hi{\thick{*}}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        ~\hi{\thicker{for} (i, x) \thicker{in} x.into\_iter()}~
+                       ~\hi{.enumerate() \{}~
+          if i > 0 {
+            s.append(",");
+          }
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x ~\thick{)}\hi{\thick{,}}\thick{*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (i, x) in x.into_iter()
+                       .enumerate() {
+          ~\hi{\thicker{if} i > 0 \{}~
+            ~\hi{s.append(\quot{,});}~
+          ~\hi{\}}~
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ ~\hi{#x}~ ~\thick{),*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (i, x) in x.into_iter()
+                       .enumerate() {
+          if i > 0 {
+            s.append(",");
+          }
+          ~\hi{x.to\_tokens(\&\thicker{mut} s);}~
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x ~\thick{),*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (i, x) in x.into_iter()
+                       .enumerate() {
+          if i > 0 {
+            s.append(",");
+          }
+          x.to_tokens(~\&~mut s);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x => #y, ~\thick{)*}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\hi{\thick{#(} #x => #y, \thick{)*}}~ }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ ~\hi{#x}~ => ~\hi{#y}~, ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in ~\hi{x}~.into_iter().~\hi{zip(y)}~ {
+          x.to_tokens(~\&~mut s);
+          s.append("=>");
+          y.to_tokens(~\&~mut s);
+          s.append(",");
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ ~\hi{#x}~ => #y, ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in x.into_iter().zip(y) {
+          ~\hi{x.to\_tokens(\&\thicker{mut} s);}~
+          s.append("=>");
+          y.to_tokens(~\&~mut s);
+          s.append(",");
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x ~\hi{=>}~ #y, ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in x.into_iter().zip(y) {
+          x.to_tokens(~\&~mut s);
+          s.append(~\hiq{=>}~);
+          y.to_tokens(~\&~mut s);
+          s.append(",");
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x => ~\hi{#y}~, ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in x.into_iter().zip(y) {
+          x.to_tokens(~\&~mut s);
+          s.append("=>");
+          ~\hi{y.to\_tokens(\&\thicker{mut} s);}~
+          s.append(",");
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x => #y~\hi{,}~ ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in x.into_iter().zip(y) {
+          x.to_tokens(~\&~mut s);
+          s.append("=>");
+          y.to_tokens(~\&~mut s);
+          s.append(~\hiq{,}~);
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      quote! { ~\thick{#(}~ #x => #y, ~\thick{)*}~ }
+
+      {
+        let mut s = quote::Tokens::new();
+        for (x, y) in x.into_iter().zip(y) {
+          x.to_tokens(~\&~mut s);
+          s.append("=>");
+          y.to_tokens(~\&~mut s);
+          s.append(",");
+        }
+        s
+      }
+    \end{minted}
+  \end{onlyenv}
+\end{frame}
+
+\againframe{title}
+
+\plain{Questions?}
+
+\end{document}
+% vim: noai:ts=2:sw=2
