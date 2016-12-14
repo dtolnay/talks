@@ -234,10 +234,10 @@
   \begin{onlyenv}<+>
     \begin{minted}{rusty}
       impl<T> HeapSize for Box<T>
-        where T: HeapSize
+        where T: HeapSize ~\+~ ?Sized
       {
         fn heap_size(~\&~self) -> usize {
-          mem::size_of<T>()
+          size_of_alloc(~\&~**self as *const T)
            ~\+~ (**self).heap_size()
         }
       }
@@ -246,79 +246,7 @@
   \begin{onlyenv}<+>
     \begin{minted}{rusty}
       impl<T> HeapSize for ~\hi{Box<T>}~
-        where T: HeapSize
-      {
-        fn heap_size(~\&~self) -> usize {
-          mem::size_of<T>()
-           ~\+~ (**self).heap_size()
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where T: HeapSize
-      {
-        fn heap_size(~\&~self) -> usize {
-          ~\hi{mem::size\_of<T>()}~
-           ~\+~ (**self).heap_size()
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where ~\hi{T: HeapSize}~
-      {
-        fn heap_size(~\&~self) -> usize {
-          mem::size_of<T>()
-           ~\+~ (**self).heap_size()
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where T: HeapSize
-      {
-        fn heap_size(~\&~self) -> usize {
-          mem::size_of<T>()
-           ~\+~ ~\hi{(**self).heap\_size()}~
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where T: HeapSize
-      {
-        fn heap_size(~\&~self) -> usize {
-          mem::size_of<T>()
-           ~\+~ (**self).heap_size()
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where T: HeapSize
-      {
-        fn heap_size(~\&~self) -> usize {
-          ~\hi{size\_of\_alloc(\&**self \thicker{as} *const T)}~
-           ~\+~ (**self).heap_size()
-        }
-      }
-    \end{minted}
-  \end{onlyenv}
-  \begin{onlyenv}<+>
-    \begin{minted}{rusty}
-      impl<T> HeapSize for Box<T>
-        where T: ~\hi{?Sized}~ ~\+~ HeapSize
+        where T: HeapSize ~\+~ ?Sized
       {
         fn heap_size(~\&~self) -> usize {
           size_of_alloc(~\&~**self as *const T)
@@ -330,7 +258,43 @@
   \begin{onlyenv}<+>
     \begin{minted}{rusty}
       impl<T> HeapSize for Box<T>
-        where T: ?Sized ~\+~ HeapSize
+        where T: HeapSize ~\+~ ?Sized
+      {
+        fn heap_size(~\&~self) -> usize {
+          ~\hi{size\_of\_alloc(\&**self \thicker{as} *const T)}~
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where ~\hi{T: HeapSize}~ ~\+~ ?Sized
+      {
+        fn heap_size(~\&~self) -> usize {
+          size_of_alloc(~\&~**self as *const T)
+           ~\+~ (**self).heap_size()
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize ~\+~ ?Sized
+      {
+        fn heap_size(~\&~self) -> usize {
+          size_of_alloc(~\&~**self as *const T)
+           ~\+~ ~\hi{(**self).heap\_size()}~
+        }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      impl<T> HeapSize for Box<T>
+        where T: HeapSize ~\+~ ?Sized
       {
         fn heap_size(~\&~self) -> usize {
           size_of_alloc(~\&~**self as *const T)
