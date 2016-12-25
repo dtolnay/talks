@@ -1,3 +1,7 @@
+**Please file an issue in this repo if you have questions.**
+
+---
+
 ## Macros 1.1 + Syn + Quote
 
 - December 2016
