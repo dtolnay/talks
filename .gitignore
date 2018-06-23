@@ -3,6 +3,7 @@ slides.aux
 slides.log
 slides.nav
 slides.out
+slides.pyg
 slides.snm
 slides.toc
-slides.vrb
+slides*.vrb
