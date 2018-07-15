@@ -5,7 +5,7 @@
 %% <LICENSE-MIT or http://opensource.org/licenses/MIT>, at your
 %% option. This file may not be copied, modified, or distributed
 %% except according to those terms.
-\documentclass[usepdftitle=false]{beamer}
+\documentclass[usepdftitle=false,aspectratio=169]{beamer}
 \mode<presentation>{\usetheme{m}}
 
 \usepackage{amssymb}
@@ -131,7 +131,16 @@
     \pgfkeysalso{#1}},
   /pgf/math set seed/.code=\pgfmathsetseed{#1}}
 
+\setbeamersize{text margin left=16mm,text margin right=16mm}
+
 \begin{document}
+
+\bgroup
+\setbeamercolor{background canvas}{bg=black}
+\begin{frame}[plain]
+\vspace*{-180pt}\color{white}\rule{3pt}{6pt}
+\end{frame}
+\egroup
 
 \bgroup
 \setbeamercolor{background canvas}{bg=black}
@@ -202,9 +211,9 @@
   \begin{minted}{rusty}
     ~\keywordthick{let}~ response = {
         ~\keywordthick{let}~ ~\keywordthick{mut}~ map = HashMap::new();
-        map.insert(~\quot{status}~, ~String~(~\quot{err...}~
-        map.insert(~\quot{retry}~, Boolean(~\keyword{fals...}~
-        map.insert(~\quot{message}~, ~String~(~\quot{Fi...}~
+        map.insert(~\quot{status}~, ~String~(~\quot{error}~));
+        map.insert(~\quot{retry}~, Boolean(~\keyword{false}~));
+        map.insert(~\quot{message}~, ~String~(~\quot{File not f..     }~
         map
     };
   \end{minted}
@@ -212,7 +221,7 @@
 
 \begin{frame}[fragile]
   \begin{minted}{rusty}
-    ~\keywordthick{let}~ response = ~\color{redish}\openquote\{~                      "
+    ~\keywordthick{let}~ response = ~\color{redish}\openquote\{~                                "
         \"status\": \"error\",
         \"retry\": false,
         \"message\": \"File not found.\"                             "
@@ -288,7 +297,7 @@
 \end{frame}
 
 \begin{frame}[fragile]{Sequence point}
-  \setlength{\leftmargini}{40pt}
+  \setlength{\leftmargini}{50pt}
   \vspace{10pt}
   \textbf{\large Covered:}
   \begin{itemize}[label=\footnotesize\ding{212},labelsep=10pt]
@@ -301,7 +310,7 @@
   \vspace{-4pt}
   \item What the heck is TT?
   \vspace{-4pt}
-  \item \mbox{Differences from C preprocessor macros\hspace*{-1000pt}}
+  \item Differences from C preprocessor macros
   \vspace{-4pt}
   \item Defining a macro
   \end{itemize}
@@ -725,23 +734,23 @@
 \end{frame}
 
 \begin{frame}[fragile]{Sequence point}
-  \setlength{\leftmargini}{40pt}
-  \vspace{10pt}
+  \setlength{\leftmargini}{50pt}
+  \vspace{8pt}
   \textbf{\large Covered:}
   \begin{itemize}[label=\footnotesize\ding{212},labelsep=10pt]
-  \vspace{-4pt}
+  \vspace{-6pt}
   \item Macro rules
-  \vspace{-4pt}
+  \vspace{-6pt}
   \item Fragment variables --- \texttt{\$e:expr}
-  \vspace{-4pt}
+  \vspace{-6pt}
   \item Repetitions --- \texttt{\$(...)*}
   \end{itemize}
-  \vspace{10pt}
+  \vspace{8pt}
   \textbf{\large Open questions:}
   \begin{itemize}[label=\footnotesize\ding{212},labelsep=10pt]
-  \vspace{-4pt}
+  \vspace{-6pt}
   \item What the heck is TT?
-  \vspace{-4pt}
+  \vspace{-6pt}
   \item Ambiguities?
   \end{itemize}
 \end{frame}
@@ -915,11 +924,11 @@
       ~\thick{json!(}~[1, {~\quot{k}~: ~\quot{v}~}, i < retries]~\thick{)}~
 
       ~\keyword{macro\_rules!}~ ~\thick{json}~ {
-          ([ ~\color{goldish}\thick{\dollar(}~~\hi{[...] OR \{...\} OR {\dollar}expr}~,~\color{goldish}\thick{)*}~ ])
-              => { ... }
+          ([ ~\color{goldish}\thick{\dollar(}~~\hi{[...] OR \{...\} OR {\dollar}expr}~,~\color{goldish}\thick{)*}~ ]) => {
+              ...
+          }
           // other rules
       }
-      ~~
     \end{minted}
   \end{onlyenv}
   \begin{onlyenv}<+>
@@ -927,11 +936,11 @@
       ~\thick{json!(}~[1, {~\quot{k}~: ~\quot{v}~}, i < retries]~\thick{)}~
 
       ~\keyword{macro\_rules!}~ ~\thick{json}~ {
-          ([ ~\color{goldish}\thick{\dollar(}~[...] OR {...} OR ~\color{goldish}{\dollar}expr~,~\color{goldish}\thick{)*}~ ])
-              => { ... }
+          ([ ~\color{goldish}\thick{\dollar(}~[...] OR {...} OR ~\color{goldish}{\dollar}expr~,~\color{goldish}\thick{)*}~ ]) => {
+              ...
+          }
           // other rules
       }
-      ~~
     \end{minted}
   \end{onlyenv}
   \begin{onlyenv}<+>
@@ -1353,234 +1362,231 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{columns}
-    \column{\dimexpr\paperwidth-40pt}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            (~\hi{[ \thick{\dollar(}{\dollar}c:tt\thick{)*} ]}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\hi{\thick{\dollar(}{\dollar}c:tt\thick{)*}}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ]~\hi{,}~ ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\hi{\thick{\dollar(}{\dollar}rest:tt\thick{)*}}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\hi{\thick{\dollar(}{\dollar}c:tt\thick{)*}}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\hi{\thick{\dollar(}{\dollar}c\thick{)*}}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\hi{\thick{\dollar(}{\dollar}rest:tt\thick{)*}}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\hi{\thick{\dollar(}{\dollar}rest\thick{)*}}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            (~\hi{[ \thick{\dollar(}{\dollar}c:tt\thick{)*} ]}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-        ~~
-        ~~
-        ~~
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-            (~\hi{\{ \thick{\dollar(}{\dollar}c:tt\thick{)*} \}}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                ...
-            }
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-            ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                ...
-            }
-        ~~
-        ~~
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-            ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                ...
-            }
-            (~\hi{{\dollar}e:expr}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => { ... }
-        }
-      \end{minted}
-    \end{onlyenv}
-    \begin{onlyenv}<+>
-      \begin{minted}{rusty}
-        ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
-            () => {}
-            ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
-                validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
-            }
-            ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
-                ...
-            }
-            (~\color{goldish}{\dollar}e:expr~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => { ... }
-        }
-      \end{minted}
-    \end{onlyenv}
-  \end{columns}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          (~\hi{[ \thick{\dollar(}{\dollar}c:tt\thick{)*} ]}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\hi{\thick{\dollar(}{\dollar}c:tt\thick{)*}}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ]~\hi{,}~ ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\hi{\thick{\dollar(}{\dollar}rest:tt\thick{)*}}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\hi{\thick{\dollar(}{\dollar}c:tt\thick{)*}}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\hi{\thick{\dollar(}{\dollar}c\thick{)*}}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\hi{\thick{\dollar(}{\dollar}rest:tt\thick{)*}}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\hi{\thick{\dollar(}{\dollar}rest\thick{)*}}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          (~\hi{[ \thick{\dollar(}{\dollar}c:tt\thick{)*} ]}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+      ~~
+      ~~
+      ~~
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+          (~\hi{\{ \thick{\dollar(}{\dollar}c:tt\thick{)*} \}}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              ...
+          }
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+          ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              ...
+          }
+      ~~
+      ~~
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+          ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              ...
+          }
+          (~\hi{{\dollar}e:expr}~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => { ... }
+      }
+    \end{minted}
+  \end{onlyenv}
+  \begin{onlyenv}<+>
+    \begin{minted}{rusty}
+      ~\keyword{macro\_rules!}~ ~\thick{validate\_array}~ {
+          () => {}
+          ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ], ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~);
+              validate_array!(~\color{goldish}\thick{\dollar(}{\dollar}rest\thick{)*}~);
+          }
+          ({ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ }, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => {
+              ...
+          }
+          (~\color{goldish}{\dollar}e:expr~, ~\color{goldish}\thick{\dollar(}{\dollar}rest:tt\thick{)*}~) => { ... }
+      }
+    \end{minted}
+  \end{onlyenv}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1659,6 +1665,8 @@
   \end{center}
 \end{frame}
 
+\plain{}
+
 \plain{Questions?}
 
 \begin{frame}
@@ -1707,19 +1715,16 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \begin{columns}
-    \column{\dimexpr\paperwidth-30pt}
-    \begin{minted}[fontsize=\small]{rusty}
-      ~\keyword{macro\_rules!}~ ~\thick{array\_helper}~ {
-          (~\color{goldish}{\dollar}a:ident~,) => {}
-          (~\color{goldish}{\dollar}a:ident~, [~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~], ~\color{goldish}\thick{\dollar(}{\dollar}r:tt\thick{)*}~) => {
-              ~\color{goldish}{\dollar}a~.push(json!([~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~]));
-              array_helper!(~\color{goldish}{\dollar}a~, ~\color{goldish}\thick{\dollar(}{\dollar}r\thick{)*}~);
-          }
-          // other rules
-      }
-    \end{minted}
-  \end{columns}
+  \begin{minted}{rusty}
+    ~\keyword{macro\_rules!}~ ~\thick{array\_helper}~ {
+        (~\color{goldish}{\dollar}a:ident~,) => {}
+        (~\color{goldish}{\dollar}a:ident~, [~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~], ~\color{goldish}\thick{\dollar(}{\dollar}r:tt\thick{)*}~) => {
+            ~\color{goldish}{\dollar}a~.push(json!([~\color{goldish}\thick{\dollar(}{\dollar}c\thick{)*}~]));
+            array_helper!(~\color{goldish}{\dollar}a~, ~\color{goldish}\thick{\dollar(}{\dollar}r\thick{)*}~);
+        }
+        // other rules
+    }
+  \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -1733,9 +1738,6 @@
         }
         // other rules
     }
-  \end{minted}
-  \vspace*{-13pt}
-  \begin{minted}[fontsize=\footnotesize,baselinestretch=1.05]{rusty}
     ~\keyword{macro\_rules!}~ ~\thick{array\_helper}~ {
         (~\color{goldish}{\dollar}a:ident~,) => {}
         (~\color{goldish}{\dollar}a:ident~, [~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~], ~\color{goldish}\thick{\dollar(}{\dollar}r:tt\thick{)*}~) => {
