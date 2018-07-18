@@ -1703,6 +1703,19 @@
 
 \begin{frame}[fragile]
   \begin{minted}{rusty}
+    ~\keywordthick{enum}~ Value {
+        ~Null,~
+        ~Bool(bool),~
+        ~Number(Number),~
+        ~String(String),~
+        ~Array(Vec<Value>),~
+        ~Object(Map<String, Value>),~
+    }
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{rusty}
     ~\keyword{macro\_rules!}~ ~\thick{json}~ {
         ([ ~\color{goldish}\thick{\dollar(}{\dollar}c:tt\thick{)*}~ ]) => {
             ~\keywordthick{let}~ ~\keywordthick{mut}~ array = ~Vec~::new();
