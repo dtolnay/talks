@@ -13,5 +13,5 @@ ffmpeg \
         }" \
     ) \
     -i audio.mp3 \
-    -vf scale=1280x720 \
+    -vf format=yuv420p,scale=1280x720 \
     video.mp4
