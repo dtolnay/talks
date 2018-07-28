@@ -27,7 +27,7 @@
 &middot;
 [**\[slides.pdf\]**][macros-1.1-slides]
 &middot;
-[**\[recording\]**][macros-1.1-recording]
+[**\[stream\]**][macros-1.1-stream]
 (begin 3:00, end 27:00)
   - I did an imperfect job of answering some of the questions and additionally,
     some of the answers are very different from what they were at the time as
@@ -39,7 +39,7 @@
   </a>
 
 [macros-1.1-slides]: https://github.com/dtolnay/talks/raw/master/2016.12-macros1.1-syn-quote/macros1.1-syn-quote.pdf
-[macros-1.1-recording]: https://air.mozilla.org/rust-meetup-december-2016-12-15/
+[macros-1.1-stream]: https://air.mozilla.org/rust-meetup-december-2016-12-15/
 [macros-1.1-questions]: https://github.com/dtolnay/talks/blob/master/2016.12-macros1.1-syn-quote/questions.md
 
 ---
