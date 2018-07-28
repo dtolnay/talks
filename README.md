@@ -19,6 +19,8 @@
 [tt-slides]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.pdf
 [tt-video]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.mp4
 
+---
+
 ## Macros 1.1 + Syn + Quote
 
 - December 2016
