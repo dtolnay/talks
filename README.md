@@ -25,7 +25,11 @@
   - I did an imperfect job of answering some of the questions and additionally,
     some of the answers are very different from what they were at the time as
     the relevant features have advanced. Up-to-date answers are written up
-    [here][macros-1.1-questions].
+    [here][macros-1.1-questions].<br><br>
+
+  <a href="https://air.mozilla.org/rust-meetup-december-2016-12-15/">
+  <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2016.12-macros1.1-syn-quote/photo.jpg">
+  </a>
 
 [macros-1.1-slides]: https://github.com/dtolnay/talks/raw/master/2016.12-macros1.1-syn-quote/slides.pdf
 [macros-1.1-recording]: https://air.mozilla.org/rust-meetup-december-2016-12-15/
