@@ -5,8 +5,10 @@
 ## Rust as TT sees it
 
 - July 2018
-[[slides.pdf]][tt-slides]
-[[audio+slides.mp4]][tt-video]
+&middot;
+[**\[slides.pdf\]**][tt-slides]
+&middot;
+[**\[audio+slides.mp4\]**][tt-video]
 
   <a href="https://twitter.com/Sunjay03/status/1019770900718137345">
   <img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo1.jpg">&emsp;<img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo2.jpg">
@@ -20,8 +22,10 @@
 ## Macros 1.1 + Syn + Quote
 
 - December 2016
-[[slides.pdf]][macros-1.1-slides]
-[[recording]][macros-1.1-recording]
+&middot;
+[**\[slides.pdf\]**][macros-1.1-slides]
+&middot;
+[**\[recording\]**][macros-1.1-recording]
 (begin 3:00, end 27:00)
   - I did an imperfect job of answering some of the questions and additionally,
     some of the answers are very different from what they were at the time as
