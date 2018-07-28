@@ -10,6 +10,9 @@ ffmpeg \
             print \"file '$(pwd)/slide-\" NR-1 \".png'\";
             print \"duration \" \$1*60+\$2-t;
             t=\$1*60+\$2;
+        }
+        END{
+            print \"file '$(pwd)/slide-\" NR-1 \".png'\";
         }" \
     ) \
     -i audio.mp3 \
