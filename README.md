@@ -9,6 +9,8 @@
 [**\[slides.pdf\]**][tt-slides]
 &middot;
 [**\[audio+slides.mp4\]**][tt-video]
+&middot;
+[**\[stream\]**][tt-stream]
 
   <a href="https://twitter.com/Sunjay03/status/1019770900718137345">
   <img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo1.jpg">&emsp;<img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo2.jpg">
@@ -18,6 +20,7 @@
 
 [tt-slides]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.pdf
 [tt-video]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.mp4
+[tt-stream]: https://vimeo.com/282087016
 
 ---
 
