@@ -14,7 +14,7 @@
   <sup>Thanks for the action shots Sunjay!</sup>
   </a>
 
-[tt-slides]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/slides.pdf
+[tt-slides]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.pdf
 
 ## Macros 1.1 + Syn + Quote
 
@@ -31,7 +31,7 @@
   <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2016.12-macros1.1-syn-quote/photo.jpg">
   </a>
 
-[macros-1.1-slides]: https://github.com/dtolnay/talks/raw/master/2016.12-macros1.1-syn-quote/slides.pdf
+[macros-1.1-slides]: https://github.com/dtolnay/talks/raw/master/2016.12-macros1.1-syn-quote/macros1.1-syn-quote.pdf
 [macros-1.1-recording]: https://air.mozilla.org/rust-meetup-december-2016-12-15/
 [macros-1.1-questions]: https://github.com/dtolnay/talks/blob/master/2016.12-macros1.1-syn-quote/questions.md
 
