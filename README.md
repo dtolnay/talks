@@ -13,7 +13,7 @@
 [**\[more!\]**][quiz-site]
 
   <a href="https://www.youtube.com/watch?v=QtDj9R6vtA8">
-  <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.10-rust-quiz/photo.jpg">
+  <img width="400" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.10-rust-quiz/photo.jpg">
   </a>
 
 [quiz-slides]: https://github.com/dtolnay/talks/raw/master/2018.10-rust-quiz/rust-quiz.pdf
@@ -33,7 +33,7 @@
 [**\[stream\]**][tt-stream]
 
   <a href="https://twitter.com/Sunjay03/status/1019770900718137345">
-  <img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo1.jpg">&emsp;<img width="300" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo2.jpg">
+  <img width="300" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo1.jpg">&emsp;<img width="300" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.07-rust-as-tt-sees-it/photo2.jpg">
   <br>
   <sup>Thanks for the action shots Sunjay!</sup>
   </a>
@@ -58,7 +58,7 @@
     [here][macros-1.1-questions].<br><br>
 
   <a href="https://air.mozilla.org/rust-meetup-december-2016-12-15/">
-  <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2016.12-macros1.1-syn-quote/photo.jpg">
+  <img width="400" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2016.12-macros1.1-syn-quote/photo.jpg">
   </a>
 
 [macros-1.1-slides]: https://github.com/dtolnay/talks/raw/master/2016.12-macros1.1-syn-quote/macros1.1-syn-quote.pdf
