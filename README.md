@@ -1,6 +1,6 @@
 **Please file an issue in this repo if you have questions.**
 
----
+<br>
 
 ## Procedural macro workshop
 
@@ -16,7 +16,7 @@ Rust Latam, Montevideo, Uruguay
 
 [latam-projects]: https://github.com/dtolnay/proc-macro-workshop
 
----
+<br>
 
 ## Rust Quiz lightning talk
 
@@ -38,7 +38,7 @@ Rust Belt Rust, Ann Arbor, MI
 [quiz-stream]: https://www.youtube.com/watch?v=QtDj9R6vtA8
 [quiz-site]: https://dtolnay.github.io/rust-quiz/
 
----
+<br>
 
 ## Rust as TT sees it
 
@@ -62,7 +62,7 @@ Stanford, CA
 [tt-video]: https://github.com/dtolnay/talks/raw/master/2018.07-rust-as-tt-sees-it/rust-as-tt-sees-it.mp4
 [tt-stream]: https://vimeo.com/282087016
 
----
+<br>
 
 ## Macros 1.1 + Syn + Quote
 
@@ -87,7 +87,7 @@ San Francisco, CA
 [macros-1.1-stream]: https://air.mozilla.org/rust-meetup-december-2016-12-15/
 [macros-1.1-questions]: https://github.com/dtolnay/talks/blob/master/2016.12-macros1.1-syn-quote/questions.md
 
----
+<br>
 
 ### License
 
