@@ -6,6 +6,8 @@
 
 - March 2019
 &middot;
+Rust Latam, Montevideo, Uruguay
+&middot;
 [**\[projects\]**][latam-projects]
 
   <a href="https://github.com/dtolnay/proc-macro-workshop">
@@ -19,6 +21,8 @@
 ## Rust Quiz lightning talk
 
 - October 2018
+&middot;
+Rust Belt Rust, Ann Arbor, MI
 &middot;
 [**\[slides.pdf\]**][quiz-slides]
 &middot;
@@ -39,6 +43,8 @@
 ## Rust as TT sees it
 
 - July 2018
+&middot;
+Stanford, CA
 &middot;
 [**\[slides.pdf\]**][tt-slides]
 &middot;
@@ -61,6 +67,8 @@
 ## Macros 1.1 + Syn + Quote
 
 - December 2016
+&middot;
+San Francisco, CA
 &middot;
 [**\[slides.pdf\]**][macros-1.1-slides]
 &middot;
