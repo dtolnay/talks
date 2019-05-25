@@ -2,6 +2,23 @@
 
 ---
 
+## Rust Quiz lightning talk
+
+- October 2018
+&middot;
+[**\[slides.pdf\]**][quiz-slides]
+&middot;
+[**\[stream\]**][quiz-stream]
+
+  <a href="https://www.youtube.com/watch?v=QtDj9R6vtA8">
+  <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.10-rust-quiz/photo.jpg">
+  </a>
+
+[quiz-slides]: https://github.com/dtolnay/talks/raw/master/2018.10-rust-quiz/rust-quiz.pdf
+[quiz-stream]: https://www.youtube.com/watch?v=QtDj9R6vtA8
+
+---
+
 ## Rust as TT sees it
 
 - July 2018
