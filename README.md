@@ -2,6 +2,20 @@
 
 ---
 
+## Procedural macro workshop
+
+- March 2019
+&middot;
+[**\[projects\]**][latam-projects]
+
+  <a href="https://github.com/dtolnay/proc-macro-workshop">
+  <img width="150" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2019.03-proc-macro-workshop/photo1.jpg">&emsp;<img width="300" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2019.03-proc-macro-workshop/photo2.jpg">&emsp;<img width="337" height="225" src="https://raw.githubusercontent.com/dtolnay/talks/master/2019.03-proc-macro-workshop/photo3.jpg">
+  </a>
+
+[latam-projects]: https://github.com/dtolnay/proc-macro-workshop
+
+---
+
 ## Rust Quiz lightning talk
 
 - October 2018
