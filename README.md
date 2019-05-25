@@ -9,6 +9,8 @@
 [**\[slides.pdf\]**][quiz-slides]
 &middot;
 [**\[stream\]**][quiz-stream]
+&middot;
+[**\[more!\]**][quiz-site]
 
   <a href="https://www.youtube.com/watch?v=QtDj9R6vtA8">
   <img width="400" src="https://raw.githubusercontent.com/dtolnay/talks/master/2018.10-rust-quiz/photo.jpg">
@@ -16,6 +18,7 @@
 
 [quiz-slides]: https://github.com/dtolnay/talks/raw/master/2018.10-rust-quiz/rust-quiz.pdf
 [quiz-stream]: https://www.youtube.com/watch?v=QtDj9R6vtA8
+[quiz-site]: https://dtolnay.github.io/rust-quiz/
 
 ---
 
